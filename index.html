@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>coder</title>
+    <meta name="keywords" content="code encode decode doug dimmadome">
+    <meta name="og:description" content="code">
+    <!--<meta property="og:image" content="../assets/siren-blue.svg">-->
+    <meta property="og:title" content="coder">
+    <meta name="twitter:description" content="code">
+    <!--<meta property="twitter:image" content="../assets/siren-blue.svg">-->
+    <meta property="twitter:title" content="coder">
+    <link rel="stylesheet" href="../main.css">
+    <!--<link rel="icon" href="../assets/siren-blue.svg">-->
+
+
+  </head>
+  <body>
+    <main>
+      <center>
+        <h1>coder</h1>
+        <div class="conversion-wrapper">
+          <textarea spellcheck="false" placeholder="input text" id="intext"></textarea>
+          <textarea spellcheck="false" disabled placeholder="output text" id="outtext"></textarea>
+        </div>
+        <div class="settings-wrapper">
+          <div class="operation-wrapper">
+            <p class="oper-button active-type" onclick="set_operation('encode')" id="encode_button">encode</p>
+            <p class="oper-button" onclick="set_operation('decode')" id="decode_button">decode</p>
+          </div>
+          <div class="options-wrapper" id="options-div"></div>
+          <div class="types-wrapper" id="typelist">
+            <p style="font-family: lato-bold;">oops... no types are present. this is probably a js error whoopsiedaisy</p>
+          </div>
+        </div>
+      </center>
+    </main>
+    <footer>
+      <img src="./assets/notepad.png">
+      <img src="./assets/technoblade.png">
+      <h2>©2022 <a href="https://dapug.lol">dapug.lol</a></h2>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

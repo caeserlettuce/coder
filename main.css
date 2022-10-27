@@ -1,0 +1,240 @@
+/* fonts */
+@font-face {
+    font-family: lato-black;
+    src: url(./assets/Lato-Black.ttf);
+} @font-face {
+    font-family: lato-bold;
+    src: url(./assets/Lato-Bold.ttf);
+} @font-face {
+    font-family: lato-italy;
+    src: url(./assets/Lato-Italic.ttf);
+} @font-face {
+    font-family: lato-reg;
+    src: url(./assets/Lato-Regular.ttf);
+} @font-face {
+    font-family: lato-reg;
+    src: url(./assets/Lato-Regular.ttf);
+} @font-face {
+    font-family: akzidenz-black;
+    src: url(./assets/Akzidenz-grotesk-black.ttf);
+} @font-face {
+    font-family: akzidenz-bold;
+    src: url(./assets/Akzidenz-grotesk-bold.ttf);
+}
+
+/* basic element stuff*/
+
+body, header, main, footer, h1, h2, h3, h4, h5, h6, p {
+    font-family: lato-reg;
+    color: white;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    overflow: overlay;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+a, .link {
+    color: white;
+    text-decoration: none;
+    transition-duration: 250ms;
+    cursor: pointer;
+}
+
+a:hover, .link:hover {
+    color: #cacaca;
+}
+
+::selection {
+    background: default;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    position: absolute;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    /*background: #789feb;*/
+    display: none;
+}
+
+/*haha i stole this code from the dogecoin website*/
+
+.disable {
+    /* nft websites can't figure this out when it took me a quick google search */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* other */
+
+body {
+    background-color: #1e1e1e;
+}
+
+
+footer {
+    background-color: #333333;
+    height: 4rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 0.3rem;
+    padding-left: 0.3rem;
+}
+
+footer img {
+    height: 3rem;
+}
+
+.conversion-wrapper {
+    display: flex;
+    padding: 20px;
+    background-color: #3c3c3c;
+    border-radius: 10px;
+    width: 80vw;
+    height: 65vh;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+
+.settings-wrapper {
+    padding: 20px;
+    background-color: #272727;
+    border-radius: 10px;
+    width: 80vw;
+}
+
+
+.operation-wrapper {
+    display: flex;
+    height: auto;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgb(61, 61, 61);
+}
+
+.types-wrapper {
+    display: flex;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.options-wrapper {
+    display: flex;
+    height: auto;
+    max-height: 500px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgb(61, 61, 61);
+    transition-duration: 500ms;
+}
+
+.options-wrapper :last-child {
+    margin-bottom: 20px;
+}
+
+.options-wrapper:empty {
+    margin: 0px;
+    border-bottom-width: 0px;
+    max-height: 0px;
+}
+
+.conversion-wrapper textarea {
+    resize: none;
+    flex: 1;
+    height: 100%;
+    background-color: #303030;
+    border: 1px solid rgb(71, 71, 71);
+    color: white;
+    font-family: lato-bold;
+    font-size: 1.25rem;
+}
+
+
+.oper-button {
+    font-family: lato-bold;
+    font-size: 1.5rem;
+    background-color: #2b2b2b;
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 5px;
+    cursor: pointer;
+    transition-duration: 200ms;
+    margin-bottom: 10px;
+}
+
+.oper-button:hover {
+    background-color: #4e4e4e;
+}
+
+.conversion-wrapper textarea::placeholder {
+    color: rgb(168, 168, 168);
+}
+
+.type-button {
+    font-family: lato-bold;
+    background-color: #2b2b2b;
+    padding: 10px;
+    border-radius: 10px;
+    padding-top: 5px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.type-button:hover {
+    background-color: #4e4e4e;
+}
+
+.active-type {
+    background-color: #5a5a5a;
+}
+
+input {
+    background-color: #333333;
+    border: 1px solid #4e4e4e;
+    border-radius: 10px;
+    padding: 5px;
+    height: 2rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+input::placeholder {
+    color: #868686;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
