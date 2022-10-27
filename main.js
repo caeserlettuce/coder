@@ -13,11 +13,13 @@ var ciphers = {
 var dimma_phrases = {
     "a": [ "have you heard of the doug dimmadome?", "doug dimmadome, owner of the dimsdale dimmadome, has a message for you!" ],
     "b": [ "here in dimsdale, we have many fun attractions!", "only for $12.99!" ],
-    "c": [ "dimma c 1", "dimma c 2" ],
+    "c": [ "have you tried our groundbreaking products yet", "we also have neil cicierega", "i see you there, buy our products" ],
+    "d": [ "dont forget to check out our pride collection that's just all our products but with a rainbow on it", 'we really love what you kids call "d"'],
+    "e": [ "9/10 doctors reccommend"],
 
 
-    " ": [ "but wait! there's more!", "but also!", "as oppose to!", "there's even more!" ],
-    "unknown": [ "we even have ", "have you tried " ] // make sure there's a space at the end of these messages specifically
+    " ": [ "but wait! there's more!", "but also", "as oppose to!", "there's even more!", "have you forgotten about this though?", "there's something else!", "dont you dare think that's all", "i will stab you" ],
+    "unknown": [ "we even have '", "have you tried '", "there is also '", "man, we really love '", "another product we have is named '" ] // make sure there's a space and ' at the end of these messages specifically
 }
 
 
@@ -190,7 +192,7 @@ function marketing_encode(object, message) {
 
         } else {
             // unknown
-            final += `${rando(object["unknown"])}'${split[i]}'!`;
+            final += `${rando(object["unknown"])}${split[i]}'!`;
         }
     }
 
