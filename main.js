@@ -11,15 +11,32 @@ var ciphers = {
 }
 
 var dimma_phrases = {
-    "a": [ "have you heard of the doug dimmadome?", "doug dimmadome, owner of the dimsdale dimmadome, has a message for you!" ],
-    "b": [ "here in dimsdale, we have many fun attractions!", "only for $12.99!" ],
+    "a": [ "have you heard of doug dimmadome?", "doug dimmadome, owner of the dimsdale dimmadome, has a message for you!", "all our products are ego-friendly AND eco-friendly" ],
+    "b": [ "here in dimsdale, we have many fun attractions!", "only for $12.99!", "we also sell live bees!", "try our new brake oil!" ],
     "c": [ "have you tried our groundbreaking products yet", "we also have neil cicierega", "i see you there, buy our products" ],
-    "d": [ "dont forget to check out our pride collection that's just all our products but with a rainbow on it", 'we really love what you kids call "d"'],
-    "e": [ "9/10 doctors reccommend"],
-
+    "d": [ "dont forget to check out our pride collection that's just all our products but with a rainbow on it", 'we really love what you millenials call "d"'],
+    "e": [ "9/10 doctors reccommend", "this is a message from doug dimmadome, owner of the dimsdale dimmadome", "every order even comes with a box of styrofoam peanuts!", 'hand-delivered by a teenager about sixteen wearing a dorky name tag that says "Hello, My Name is Eugene"', "you are valid", "scrappy doo was found dead in miami", "florida man dead after attempting to \"microwave a microwave\"", "gas prices have gone into the negatives after taco bell starts losing supplies", "what if...", "you are now in manual breathing mode", "you are now in manual blinking mode", "you have just lost \"the game\""],
+    "f": [ "i know where you live", "its only $6.66!", "this is a great deal!", "you should remember this!", "we always deliver", "remember: the attempted assassaination of Franz Ferdinand is the funniest attempted assassaination to ever have happened"],
+    "g": [ "guarunteed* goods", "register now!", "we're here to reach you about your car's extended warranty", "here we have a circle, smooth and inoffensive", "twitter was a mistake"],
+    "h": [ "michael jackson even hee hee's over this", "find new roads; chevrolet.", "find more!", "you can do this", "delivered by specially trained ninjas!", "found throughout the mountain range"],
+    "i": [ "did you know?", "even jesus approves of this", "used in 20 of every 10 high schools", "these products are not haunted", "my name os barack obama, and i approve this message"],
+    "j": [ "founded by classic j of glass beach the band!", "along with that, we have our reporter here, steve, with some more news.", "we pay our respects to this fallen soldier, deedee, mega-doodoo. sorry.", "you can pronounce lemon demon four different ways."],
+    "k": [ "you cannot find the bodies", "better than oxi clean!", "this is the", "our marketing team is running out of budget"],
+    "l": [ "we even have collections with nike!", "canada's best", "if you dont't buy our products, we'll hand you the L", "due to our strong personal convictions, we wish to stress, that these products in no way endorse a belief in the occult."],
+    "m": [ "mogus mumbles approves", "the second company to exist in australia (dont look that up)", "special orders will all be fulfilled on the moon" ],
+    "n": [ "mogul moves!", "even used in high school assemblies", "these can also be used as murder weapons" ],
+    "o": [ "neil cicierega has a message for YOU!", "have you ever had a dream where you uh you um you uh you do you uh you do you so much you can do anything?"],
+    "p": [ "you see, when i was a young boy, my father took me into the city to see a marching band. he said, \"son are those big trumpets\" (they were mellophones)", "weeeeeee", "all our servers are linux and there's nothing you can do about it"],
+    "q": [ "¿por qué?", "the book is a better seller than george orwell's 1984", "as michael jackson says, Hee Hee!"],
+    "r": [ "remember when vine was a thing? all our phones & tablets have a rebooted vine app on them!", "not bought our products? i think it is because of the rage"],
+    "s": [ "are products are not sus", "spine crackles are guarunteed!", "we even called scrappy doo at 3am!", "this is the beginning of the resurgence of the \"e\" meme.", "markiplier e meme!", "i commit arson", "we sell peas", "\"sally sells seshells by the seashore\", well we also sell seashells so we sued her for 10.4 million and won. she now is in crippling debt. and we are happy."],
+    "t": [ "john, you have a meeting at 8. no wait, the voice to text is on. off. off. OFF. OFF. GOD TURN OFF", "gaslighting does not exist, and if you think it does you're crazy", "the house that's not on fire (yet)"],
+    "u": [ "you can't spell \"sus\" without \"us\"", ""],
 
     " ": [ "but wait! there's more!", "but also", "as oppose to!", "there's even more!", "have you forgotten about this though?", "there's something else!", "dont you dare think that's all", "i will stab you" ],
-    "unknown": [ "we even have '", "have you tried '", "there is also '", "man, we really love '", "another product we have is named '" ] // make sure there's a space and ' at the end of these messages specifically
+    "\n": ["just in case you have me mistaken...", "let me repeat this", "dont hit your carriage return just yet", "remember your lines..."],
+    // for unknown phrases, put the punctuation mark you want at the end of the string, and for no punctuation put #
+    "unknown": [ "we even have '!", "have you tried '?", "there is also '!", "man, we really love '!", "another product we have is named '!", "have you seen '?" ]
 }
 
 
@@ -192,7 +209,14 @@ function marketing_encode(object, message) {
 
         } else {
             // unknown
-            final += `${rando(object["unknown"])}${split[i]}'!`;
+            var phrase = rando(object["unknown"])
+
+            var punct = phrase.slice(-1);
+            if (punct == "#") {
+                punct = "";
+            }
+
+            final += `${phrase.replace(`${punct}`, "")}${split[i]}'${punct}`;
         }
     }
 
@@ -213,10 +237,15 @@ function marketing_decode(object, message) {
             // if it doesnt (it's an unknown character in the conversion object or someone was messing with the code)
             var phrase = split[i];
             for (i in og_object["unknown"]) {
-                var phrase_changed = phrase.replace(`${og_object["unknown"][i]}`, "");
+                var unk = og_object["unknown"][i]
+                var unk_punct = unk.slice(-1);
+                var unk_nopunct = unk.replace(unk_punct, "");
+                var phrase_changed = phrase.replace(`${unk_nopunct}`, "");
+                console.log(phrase_changed)
                 if (phrase_changed != phrase) {
+                    var punct = phrase_changed.slice(-1);
                     var character = phrase_changed.replaceAll("'", "");
-                    character = character.replaceAll("!", "");
+                    character = character.replaceAll(`${punct}`, "");
                     final += character
                 }
             }
@@ -265,8 +294,12 @@ function translate() {
                     var letter = split[i];
                     var og_num = letter.charCodeAt(0);
                     var new_num = parseInt(og_num) + parseInt(shift)
-                    if (new_num <= 0) {
-                        new_num = unicode_max + new_num; // roll back to last unicode char
+                    console.log(`new_num: ${og_num} + ${shift} = ${new_num}`)
+                    if (new_num <= 0 || new_num > unicode_max) {
+                        var old_num = new_num
+                        new_num = Math.abs(unicode_max - new_num); // roll back to last unicode char
+
+                        console.log(`newer_num: ${unicode_max} + ${old_num} = ${new_num}`)
                     }
                     final += String.fromCharCode(new_num);
                 }
@@ -299,15 +332,21 @@ function translate() {
 
                 var shift = document.getElementById("shift").value;
                 if (shift == "" || shift == undefined || shift == null) {
-                    shift = -3;
+                    shift = 3;
                 }
 
                 for (i in split) {
                     var letter = split[i];
                     var og_num = letter.charCodeAt(0);
                     var new_num = parseInt(og_num) - parseInt(shift)
-                    if (new_num > unicode_max) {
-                        new_num = new_num - unicode_max; // roll back to last unicode char
+
+                    console.log(`new_num: ${og_num} - ${shift} = ${new_num}`);
+                    if (new_num <= 0 || new_num > unicode_max) {
+
+                        var old_num = new_num;
+                        new_num = Math.abs(new_num - unicode_max); // roll back to last unicode char
+
+                        console.log(`newer_num: ${unicode_max} - ${old_num} = ${new_num}`)
                     }
                     final += String.fromCharCode(new_num);
                 }
